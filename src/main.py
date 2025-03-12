@@ -128,6 +128,11 @@ class MainWindow(QMainWindow):
         self.btn_export_code.hide()
         self.pipeline_manage_layout.addWidget(self.btn_export_code)
 
+        self.btn_import_code = QPushButton(text="Import pipeline from code")
+        self.btn_import_code.clicked.connect(self.action_import_to_code)
+        self.btn_import_code.hide()
+        self.pipeline_manage_layout.addWidget(self.btn_import_code)        
+
         self.btn_download_image = QPushButton(text="Download current image")
         self.btn_download_image.clicked.connect(self.action_download_current_image)
         self.btn_download_image.hide()
@@ -223,6 +228,7 @@ class MainWindow(QMainWindow):
 
         self.import_button.hide()
         self.btn_export_code.setHidden(False)
+        self.btn_import_code.setHidden(False)
         self.btn_download_image.setHidden(False)
         self.image_frame.setHidden(False)
         self.button_show_last_image.setHidden(False)
@@ -283,6 +289,37 @@ class MainWindow(QMainWindow):
             self.pipeline.update_from_index(self.index_current_img)
         self.update_all_qframes()
 
+    def action_import_to_code(self):
+        """Read transformation from persisted files"""
+        file_dialog = QFileDialog()
+        file_dialog.setDefaultSuffix("py")
+        # file_dialog.setNameFilter("Python Files (*.py)")
+        if file_dialog.exec():
+            file_path = file_dialog.selectedFiles()[0]
+            try:
+                with open(file_path, 'r', encoding='utf-8') as file:
+                    # content = file.read
+                    first_line = file.readline()
+                print("File read successfully.")
+            except Exception as e:
+                print(f"Error reading file: {str(e)}")
+        else:
+            print("Read operation canceled.")
+        # read only first line of content
+        # get key_commands from first line
+        # for each key_command, call transformation_saver with key_command
+        if first_line.startswith("# key_commands:"):
+            key_commands = first_line[len("# key_commands:"):].split(",,")
+            for key_command in key_commands:
+                key_command = key_command.strip()
+                if key_command:
+                    self.transformer_manager.transformation_saver(key_command)
+            print("Transformations imported successfully.")
+        else:
+            print("No key commands found in the file.")
+
+
+
     def action_export_to_code(self):
         """Transform the pipeline int a text file and let the user choose the save location"""
         old_image_name = "original_image_0"
@@ -311,6 +348,14 @@ class MainWindow(QMainWindow):
             string_code += variable_name + " = " + command + "\n"
         
         string_code += "\ncv.imshow('Result', " + old_image_name + ")\ncv.waitKey()"
+
+        # insert key_commands as hints at the top of the file
+        command_list = ""
+        for index, pipeline_item in enumerate(self.pipeline):
+            if pipeline_item.transformation_item==None: continue
+            print( "pipeline_item.transformation_item.name: ", pipeline_item.transformation_item.name )
+            command_list += pipeline_item.transformation_item.name + " ,, "
+        string_code = "# key_commands: " + command_list + "\n\n" + string_code
 
         file_dialog = QFileDialog()
         file_dialog.setAcceptMode(QFileDialog.AcceptSave)

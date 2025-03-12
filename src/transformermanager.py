@@ -11,6 +11,10 @@ class TransformerManager():
         
     def transformation_saver(self, key_command):
         """Modify the transformation in pipeline"""
+        # print key_command to stdout
+        print("key_command: {}", key_command)
+
+
         dict_parameters = self.get_default_transformation_parameters(key_command)
         transformation_item = TransformationItem(key_command, dict_parameters)
         new_item = PipelineItem(None, transformation_item)
