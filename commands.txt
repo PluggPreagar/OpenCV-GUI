@@ -1,4 +1,181 @@
 {
+    'F_HorizVert': {
+        'command': 'f_horzVert(image, bright_min, bright_max, horiz_size, vert_size, bright_contour_min)',
+        'number_parameters' : 6,
+        'condition': 'True',
+        'gui':{
+            'slider':{
+                'number_slider': 5,
+                'slider0': {'name': '(bright_min)','variable_name': 'bright_min','min_value': '0','max_value': '255','step':'2','default_value': '50'},
+                'slider1': {'name': 'bright_max','variable_name': 'bright_max','min_value': '1','max_value': '255','step':'2','default_value': '150'},
+                'slider2': {'name': 'horiz_size','variable_name': 'horiz_size','min_value': '0','max_value': '255','step':'2','default_value': '1'},
+                'slider3': {'name': 'vert_size','variable_name': 'vert_size','min_value': '0','max_value': '255','step':'2','default_value': '0'},
+                'slider4': {'name': 'bright_contour_min','variable_name': 'bright_contour_min','min_value': '0','max_value': '255','step':'2','default_value': '5'},
+            },
+            'menu': {
+                'number_menu': 0
+            }
+        }
+    }
+    ,
+    'F_Contour': {
+        'command': 'f_contour(image, bright_min, bright_max, size_min, size_max, bright_contour_min)',
+        'number_parameters' : 6,
+        'condition': 'True',
+        'gui':{
+            'slider':{
+                'number_slider': 5,
+                'slider0': {'name': '(bright_min)','variable_name': 'bright_min','min_value': '0','max_value': '255','step':'2','default_value': '50'},
+                'slider1': {'name': 'bright_max','variable_name': 'bright_max','min_value': '1','max_value': '255','step':'2','default_value': '150'},
+                'slider2': {'name': 'size_min','variable_name': 'size_min','min_value': '0','max_value': '255','step':'2','default_value': '56'},
+                'slider3': {'name': 'size_max','variable_name': 'size_max','min_value': '1','max_value': '255','step':'2','default_value': '200'},
+                'slider4': {'name': 'bright_contour_min','variable_name': 'bright_contour_min','min_value': '1','max_value': '255','step':'2','default_value': '125'},
+            },
+            'menu': {
+                'number_menu': 0
+            }
+        }
+    }
+    ,
+    'F_Structure': {
+        'command': 'f_structure(image, kernel_open, kernel_dilation, kernel_erosion, dilerode_iterations)',
+        'number_parameters' : 5,
+        'condition': 'True',
+        'gui':{
+            'slider':{
+                'number_slider': 4,
+                'slider0': {'name': '(kernel_open)','variable_name': 'kernel_open','min_value': '0','max_value': '255','step':'1','default_value': '2'},
+                'slider1': {'name': '(kernel_dilation)','variable_name': 'kernel_dilation','min_value': '0','max_value': '255','step':'1','default_value': '8'},
+                'slider2': {'name': '(kernel_erosion)','variable_name': 'kernel_erosion','min_value': '0','max_value': '255','step':'1','default_value': '7'},
+                'slider3': {'name': 'dilerode_iterations','variable_name': 'dilerode_iterations','min_value': '1','max_value': '255','step':'2','default_value': '3'},
+            },
+            'menu': {
+                'number_menu': 0
+            }
+        }
+    }
+    ,
+    'F_Histogram': {
+        'command': 'f_histo(image, low, mid, high)',
+        'number_parameters' : 4,
+        'condition': 'True',
+        'gui':{
+            'slider':{
+                'number_slider': 3,
+                'slider0': {'name': '(low)','variable_name': 'low','min_value': '0','max_value': '255','step':'2','default_value': '4'},
+                'slider1': {'name': 'mid','variable_name': 'mid','min_value': '0','max_value': '255','step':'2','default_value': '5'},
+                'slider2': {'name': 'high','variable_name': 'high','min_value': '1','max_value': '255','step':'2','default_value': '23'},
+            },
+            'menu': {
+                'number_menu': 0
+            }
+        }
+    }
+    ,
+    'FOX_04': {        'command': 'fox04(image, kernel, kernel_backgr, backr_prozent, kernelNeg, low, high, votes, min_len, max_gap)',
+        'number_parameters' : 10,
+        'condition': 'True',
+        'gui':{
+            'slider':{
+                'number_slider': 9,
+                'slider0': {'name': 'Kernel','variable_name': 'kernel','min_value': '1','max_value': '300','step':'2','default_value': '19'},
+                'slider1': {'name': '(KernelBackgr)','variable_name': 'kernel_backgr','min_value': '0','max_value': '300','step':'2','default_value': '106'},
+                'slider2': {'name': '(BackrProzent)','variable_name': 'backr_prozent','min_value': '0','max_value': '100','step':'25','default_value': '100'},
+                'slider3': {'name': '(kernelNeg)','variable_name': 'kernelNeg','min_value': '0','max_value': '100','step':'2','default_value': '5'},
+                'slider4': {'name': '(low)','variable_name': 'low','min_value': '0','max_value': '100','step':'2','default_value': '0'},
+                'slider5': {'name': 'high','variable_name': 'high','min_value': '1','max_value': '300','step':'2','default_value': '150'},
+                'slider6': {'name': 'votes','variable_name': 'votes','min_value': '1','max_value': '100','step':'2','default_value': '15'},
+                'slider7': {'name': 'min_len','variable_name': 'min_len','min_value': '1','max_value': '100','step':'2','default_value': '50'},
+                'slider8': {'name': 'max_gap','variable_name': 'max_gap','min_value': '1','max_value': '100','step':'2','default_value': '20'},
+            },
+            'menu': {
+                'number_menu': 0
+            }
+        }
+    }
+    ,
+    'FOX_03': {
+        'command': 'fox03(image, kernel, kernelNeg, low, high, votes, min_len, max_gap)',
+        'number_parameters' : 8,
+        'condition': 'True',
+        'gui':{
+            'slider':{
+                'number_slider': 7,
+                'slider0': {'name': 'Kernel','variable_name': 'kernel','min_value': '1','max_value': '100','step':'2','default_value': '5'},
+                'slider1': {'name': 'kernelNeg','variable_name': 'kernelNeg','min_value': '0','max_value': '100','step':'2','default_value': '5'},
+                'slider2': {'name': 'low','variable_name': 'low','min_value': '1','max_value': '100','step':'2','default_value': '50'},
+                'slider3': {'name': 'high','variable_name': 'high','min_value': '1','max_value': '300','step':'2','default_value': '150'},
+                'slider4': {'name': 'votes','variable_name': 'votes','min_value': '1','max_value': '100','step':'2','default_value': '15'},
+                'slider5': {'name': 'min_len','variable_name': 'min_len','min_value': '1','max_value': '100','step':'2','default_value': '50'},
+                'slider6': {'name': 'max_gap','variable_name': 'max_gap','min_value': '1','max_value': '100','step':'2','default_value': '20'},
+            },
+            'menu': {
+                'number_menu': 0
+            }
+        }
+    }
+    ,
+        'FOX': {
+            'command': 'fox(image, operation_type, morph_type, kernel_size, 5, edge_threshold, blob_removal_threshold)',
+            'number_parameters' : 7,
+            'condition': 'True',
+            'gui':{
+                'slider':{
+                    'number_slider': 3,
+                    'slider0': {
+                        'name': 'Kernel Size Blur',
+                        'variable_name': 'kernel_size',
+                        'min_value': '1',
+                        'max_value': 'int(min(len(image[0]), len(image))/2)',
+                        'step':'2',
+                        'default_value': '40'
+                    },
+                    'slider1': {
+                        'name': 'Edge_threshold',
+                        'variable_name': 'edge_threshold',
+                        'min_value': '0',
+                        'max_value': '30',
+                        'step':'1',
+                        'default_value': '0'
+                    },
+                    'slider2': {
+                        'name': 'blob_removal_threshold',
+                        'variable_name': 'blob_removal_threshold',
+                        'min_value': '1',
+                        'max_value': '30',
+                        'step':'1',
+                        'default_value': '1'
+                    }
+                },
+                'menu':{
+                    'number_menu': 2,
+                    'menu0': {
+                        'name': 'Operation Type',
+                        'variable_name': 'operation_type',
+                        'menu_item':{
+                            'Erode' : cv.MORPH_ERODE,
+                            'Dilate': cv.MORPH_DILATE,
+                            'Open': cv.MORPH_OPEN,
+                            'Close': cv.MORPH_CLOSE,
+                            'Gradient': cv.MORPH_GRADIENT,
+                            'Top Hat': cv.MORPH_TOPHAT,
+                            'Black Hat': cv.MORPH_BLACKHAT,
+                            'Hit Miss': cv.MORPH_HITMISS
+                        }
+                    },
+                    'menu1': {
+                        'name': 'Kernel Type',
+                        'variable_name': 'morph_type',
+                        'menu_item':{
+                            'Rectangle' : cv.MORPH_RECT,
+                            'Cross': cv.MORPH_CROSS,
+                            'Ellipse': cv.MORPH_ELLIPSE
+                        }
+                    }
+                }
+            }
+        }
+    ,
     'DRAWING - Line': {
         'command': 'cv.line(image, (x_begin, y_begin), (x_end, y_end), (red, green, blue), thickness, linetype)',
         'number_parameters': 10,

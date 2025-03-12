@@ -2,6 +2,14 @@ import cv2 as cv        # used in eval()
 import numpy as np      # used in eval()
 from qtpy.QtWidgets import QMessageBox
 
+from fox import fox
+from fox03 import fox03
+from fox04Matrix import fox04
+from f_histo import f_histo
+from f_contour import f_contour
+from f_structure import f_structure
+from f_horzVert import f_horzVert
+
 class Transformer():
     """An objet that transform a given image with the specified transformation with opencv"""
     def __init__(self):

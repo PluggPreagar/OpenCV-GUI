@@ -1,3 +1,4 @@
+import cv2
 from qtpy.QtWidgets import QApplication, QCheckBox, QMainWindow, QRadioButton, QVBoxLayout, QHBoxLayout, QLabel, QFrame, QPushButton, QFileDialog, QWidget, QScrollArea
 from qtpy import QtGui
 from qtpy.QtCore import Qt, QSize, QTimer
@@ -15,6 +16,7 @@ from pipelineitem import PipelineItem
 from pipeline import Pipeline
 from sliderwithtext import SliderWithText
 from menuwithtext import MenuWithText
+
 
 WIDTH_RIGHT_FRAME = 220
 HEIGHT_UPPER_FRAME = 170
@@ -189,6 +191,13 @@ class MainWindow(QMainWindow):
             widget.deleteLater()
 
 # Choose Image
+
+    def preset_image(self, str_path):
+        """Load an image from a given path"""
+        self.img_path = str_path
+        img_array = imdecode(fromfile(str_path, dtype=uint8), IMREAD_UNCHANGED)
+        img_array = cvtColor(img_array, COLOR_BGR2RGB)
+        self.ui_after_image_loaded(img_array)
 
     def open_image(self):
         """Open a Choose File Dialog to let the user choose an image. return the RGB of this image"""
@@ -478,4 +487,5 @@ if __name__ == '__main__':
         img_array = imdecode(fromfile(argv[1], dtype=uint8), IMREAD_UNCHANGED)
         img_array = cvtColor(img_array, COLOR_BGR2RGB)
         window.ui_after_image_loaded(img_array)
-    exit(app.exec())
+    app.aboutToQuit.connect(cv2.destroyAllWindows)  # Close all OpenCV windows on exit
+    exit(app.exec()) # start qt event loop

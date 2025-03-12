@@ -1,3 +1,6 @@
+import traceback
+
+
 class Pipeline(list):
     """List of the PipelineItem.
         
@@ -22,6 +25,8 @@ class Pipeline(list):
             item_current.img_array = self.transformer.transform(item_before, item_current)
         except:
             self.function_to_call_error("An error occured in the transformation pipeline ("+ str(index-1)+ "->"+ str(index) +"). Action cancelled.")
+            # print the error
+            traceback.print_exc()
             raise Exception("Error in the pipeline."+ str(index-2)+ "->"+ str(index-1))
 
     def update_from_index(self, index=1):
